@@ -1,0 +1,229 @@
+% $Id: doc.tex,v 1.1 2002-06-05 13:15:55 m Exp $
+% (PDF)LaTeX preample {{{
+% vim: filetype=tex
+% This is a PDFLaTeX-centric header, may not work with plain LaTeX
+\documentclass[a4paper,11pt,oneside]{scrartcl}
+%\usepackage{babel}
+\usepackage[T1]{fontenc}
+\usepackage{ae} % Nice letters, also in Postscript and PDF output.
+\usepackage{aecompl} % As above.
+%\usepackage{pslatex} % Can be used instead of the ae* packages.
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{marvosym} % \Smiley, \Frowny etc., nice.
+\usepackage{booktabs} % I find 'texdoc booktabs' enlightening.
+\usepackage[squaren,cdot,derived,thickqspace]{SIunits}
+\usepackage{ifthen} % if, then, else constructs.
+\usepackage{xr} % Cros references.
+\usepackage[pdftex]{graphicx} % tell graphics about pdf
+\usepackage{verbatim}
+
+% Pretty pretty page headers and footers
+\usepackage{fancyhdr} % use fancy headers
+\pagestyle{fancy} % make fancyhdr take care of it
+% or specify explicitly it oneself:
+	% \lhead{}
+	% \chead{}
+	% \rhead{}
+	% below is a very ugly hack to make RCS tags appear correctly ...
+	% \lfoot{\texttt{\$Id: doc.tex,v 1.1 2002-06-05 13:15:55 m Exp $ $\$}}
+	% well, it works :-), but I think it looks bad in the footer ...
+	% \lfoot{}
+	% \cfoot{\thepage}
+	% \rfoot{}
+	% \renewcommand{\headrulewidth}{0.4pt}
+	% \renewcommand{\footrulewidth}{0.4pt}
+
+% Graphics and colors.
+\usepackage[pdftex]{graphicx} % Tell 'graphicx' om PDFTeX.
+\usepackage{color} % More colorful docs, se rgb.tex.
+
+% LGrind is a source code pretty printer for LaTeX in the style of vgrind(1)
+\usepackage[lineno5]{lgrind} % include code with linenubmber every 5th line
+	% \def\CMfont{\large} % these are optional, it looks better in the
+	% \def\KWfont{\large} % default sizes I think, though it's not perfect,
+	% \def\VRfont{\large} % but it's just too hairy for me fixing it now.
+	% \def\BGfont{\large} % Maybe some day.
+\usepackage{hyperref} % an indispensable package with lots of options
+\hypersetup{ % all the options for hyperref:
+	pdftitle={Answers to Exercises in "The C++ Programming Language"},
+	pdfauthor={Morten Liebach},
+	pdfsubject={Answers to Exercises in Bjarne Stroustup' "The C++ Programming Language"},
+	pdfcreator={Morten Liebach},
+	pdfproducer={PDFLaTeX},
+	pdfkeywords={C++ Bjarne Stroustrup Exercises},
+	pdfview={FitBH}, % default PDF `view' for each link
+	pdfstartpage={1}, % which page the PDF file is opened on.
+  % These next two wrecks pdfLaTeX output totally ...
+  %	pdfstartview={FitBH}, % startup page view.
+  %	pdfpagescrop={1 1 1 1}, % default PDF crop box for pages. set of 4 numbers.
+	pdfpagemode={UseThumbs},
+	pageanchor, breaklinks, % break really long links into 2 or more
+	pdftex, bookmarks, bookmarksopen, bookmarksnumbered,
+	pdfhighlight={/O},
+	extension={pdf}, % if 'xr' package is used link to other .pdf docs
+	hyperfigures={true},
+	backref={true}, % needs a blank line after each \bibitem.
+	pagebackref={true}, 
+	hyperindex={true}, % makes the text of index entries into hyperlinks.
+	colorlinks, % color link text, not a box around them.
+	linkcolor={red4}, % color for normal internal links.
+	anchorcolor={blue4}, % color for anchor text.
+	citecolor={ForestGreen}, % color for bibligraphical citations in text.
+	filecolor={cyan4}, % color for URLs which open local files.
+	menucolor={red4}, % color for Acrobat menu items.
+	pagecolor={red4}, % color for links to other pages.
+	urlcolor={blue4}, % color for linked URLs.
+}
+\usepackage{thumbpdf} % generate thumbnails of pages in PDFTeX (using perl5)
+\frenchspacing
+
+\usepackage{makeidx}
+%\usepackage{showidx} % Show all \index commands in the margin.
+\makeindex
+
+% Definition of a command to insert an 'at-sign', as 'lgrind -e'
+% will expand any 'at-sign' found to lgrind macros. Dirty.
+\input at % http://kallisti.dk/pub/at.tex
+\input rgb % http://kallisti.dk/pub/rgb.tex
+
+% End preample }}}
+
+
+\title{Answers to the Exercises in \\
+``The C++ Programming Language''}
+\author{Morten Liebach \\
+\texttt{\href{mailto:m\at kallisti.dk}{m\at kallisti.dk}}}
+
+\begin{document}
+
+% Makes producing DVIs easier.
+\DeclareGraphicsExtensions{.jpg,.pdf,.mps,.png}
+
+\maketitle
+
+\abstract
+
+\index{The C++ Programming Language}
+
+This is my, very humble, attempt at solving the exercises in Bjarne
+Stroustrup' ``The C++ Programming Language''.
+
+Coming from a short introductory course on C++ that tasted like more, I
+started working my way through ``The C++ Programming
+Language''~\cite{stroustrup}. With no former experience with programming
+except the occasional shellscript in my 3 years as a Unix user it has proven
+quite hard, but extremely interesting.
+
+If you find errors -- and you will, please don't hesitate to drop me an
+email correcting me, I'll be more than happy to incorporate it into this
+document with appropriate reference.
+
+\index{BSD license} \index{license}
+
+For the place to get the latest version of this document and the license,
+see Appendix \ref{sec:license} page \pageref{sec:license}.
+
+For a complete revision history see Appendix \ref{sec:changelog} page
+\pageref{sec:changelog}.
+
+% Here come a lot of stuff ...
+
+
+\appendix % Appendixes hereafter.
+
+\newpage
+\section{License} % {{{
+\label{sec:license}
+
+\index{BSD license}
+
+The latest version of this document can be found at
+\texttt{\href{http://kallisti.dk/pub/cppl-ex.pdf}
+{http://kallisti.dk/pub/cppl-ex.pdf}}, also as \LaTeX sourcecode at
+\texttt{\href{http://kallisti.dk/pub/cppl-ex.tex}
+{http://kallisti.dk/pub/cppl-ex.tex}}. This document is published under the
+following license and Copyright:
+
+\small{
+\begin{verbatim}
+Copyright (c) 2002 Morten Liebach.  All rights reserved.
+ 
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+3. All advertising materials mentioning features or use of this software
+   must display the following acknowledgement:
+     This product includes software written by Morten Liebach.
+4. The name of the author may not be used to endorse or promote products
+   derived from this software without specific prior written permission.
+ 
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+\end{verbatim}
+}
+
+I can be reached at
+\texttt{\href{mailto:m\at kallisti.dk}{m\at kallisti.dk}}.
+%, or by normal mail at:
+
+% Maybe not.
+% \begin{quote}
+% Morten Liebach \\
+% c/o Jens Waring \& Charlotte Waring \\ % Or is it !Waring for CHarlotte?
+% Brog\aa{}rdsv\ae{}nget 1 \\
+% 2820 Gentofte \\
+% Denmark
+% \end{quote}
+
+% }}}
+
+\newpage
+\section{Changelog} % {{{
+\label{sec:changelog}
+
+\begin{flushleft} % Don't indent this. Strictly speaking not necessary.
+This version is:
+\end{flushleft}
+
+\begin{verbatim}
+$Id: doc.tex,v 1.1 2002-06-05 13:15:55 m Exp $
+\end{verbatim}
+
+\begin{flushleft} % Don't indent this.
+The complete log from CVS:
+\end{flushleft}
+
+\begin{verbatim}
+$Log: not supported by cvs2svn $
+\end{verbatim}
+
+% }}}
+
+% And then:
+
+% Bibliography. Remember to run bibtex(1).
+\newpage
+\bibliography{cppl-ex}
+\bibliographystyle{plain}
+
+% Print the index. Remember to run makeindex(1).
+\printindex
+
+\end{document}
+
