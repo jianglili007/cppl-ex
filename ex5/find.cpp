@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 int sfind(const string& s); // Find 'ab' in a C++ string.
 
 int afind(char a[]); // Find 'ab' in a C-style char array.
