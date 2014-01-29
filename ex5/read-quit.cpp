@@ -8,6 +8,8 @@
 #include <vector>
 #include <cstdlib>
 
+using namespace std;
+
 // Struct holding a word:count pair.
 struct acct {
 	string word;
