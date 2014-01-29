@@ -4,11 +4,11 @@
 
 int main()
 {
+	using namespace std;
+
 	// String of 71 chars. Ordered after value.
 	string chars = "жеш!\"#$%&'()*+,-./0123456789:;<=>?@[\\]^_`"
 		"abcdefghijklmnopqrstuvwxyz{|}~";
-
-	using namespace std;
 
 	for(int i = 0; i < 71; ++i) {
 		// Can't figure out how to print an int as hex without
