@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 void print(string names[])
 {
 	for(int i = 0; i < 12; ++i)
