@@ -5,6 +5,8 @@
 #include <string>
 #include <cstdlib>
 
+using namespace std;
+
 // Struct holding a name:val pair.
 struct Pair {
 	string name;
